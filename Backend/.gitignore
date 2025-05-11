@@ -3,3 +3,7 @@ node_modules
 
 # Prisma
 generated/prisma/
+
+# Json seed
+prisma/seeders/data/*
+!prisma/seeders/data/*template*.json

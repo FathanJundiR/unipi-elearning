@@ -13,3 +13,180 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id         Int        @id @default(autoincrement())
+  nikNpm     String     @unique @db.VarChar(11)
+  nama       String     @db.VarChar(100)
+  foto       String?
+  password   String     @db.VarChar(100)
+  noTelepon  String?    @db.VarChar(20)
+  email      String?    @db.VarChar(100)
+  alamat     String?
+  role       ROLE       @default(MAHASISWA)
+  sesiKuliah SESIKULIAH
+  status     STATUS
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  jadwalMatkul    JadwalMatkul[]
+  jadwalMahasiswa JadwalMahasiswa[]
+  hasilTugas      HasilTugas[]
+}
+
+model Kelas {
+  id        Int       @id @default(autoincrement())
+  namaKelas String    @db.VarChar(5)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  jadwalMatkul JadwalMatkul[]
+}
+
+model TahunAjaran {
+  id          Int       @id @default(autoincrement())
+  tahunAjaran String    @db.VarChar(25)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  jadwalMatkul JadwalMatkul[]
+}
+
+model MataKuliah {
+  id        Int       @id @default(autoincrement())
+  judul     String    @db.VarChar(100)
+  deskripsi String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  jadwalMatkul JadwalMatkul[]
+}
+
+model Pengumuman {
+  id        Int       @id @default(autoincrement())
+  judul     String    @db.VarChar(100)
+  isi       String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  pengumumanMatkul PengumumanMatkul[]
+}
+
+model JadwalMatkul {
+  id            Int         @id @default(autoincrement())
+  kelas         Kelas       @relation(fields: [kelasId], references: [id])
+  kelasId       Int
+  dosen         User        @relation(fields: [dosenId], references: [id])
+  dosenId       Int
+  matkul        MataKuliah  @relation(fields: [matkulId], references: [id])
+  matkulId      Int
+  tahunAjaran   TahunAjaran @relation(fields: [tahunAjaranId], references: [id])
+  tahunAjaranId Int
+  sesiMatkul    SESIMATKUL
+  enrollCode    String      @db.VarChar(6)
+  hari          String      @db.VarChar(6)
+  jamMulai      DateTime?   @db.Timetz()
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  deletedAt     DateTime?
+
+  pengumumanMatkul PengumumanMatkul[]
+  jadwalMahasiswa  JadwalMahasiswa[]
+  pertemuan        Pertemuan[]
+}
+
+model JadwalMahasiswa {
+  id             Int          @id @default(autoincrement())
+  mahasiswa      User         @relation(fields: [mahasiswaId], references: [id])
+  mahasiswaId    Int
+  jadwalMatkul   JadwalMatkul @relation(fields: [jadwalMatkulId], references: [id])
+  jadwalMatkulId Int
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
+}
+
+model PengumumanMatkul {
+  id             Int          @id @default(autoincrement())
+  jadwalMatkul   JadwalMatkul @relation(fields: [jadwalMatkulId], references: [id])
+  jadwalMatkulId Int
+  pengumuman     Pengumuman   @relation(fields: [pengumumanId], references: [id])
+  pengumumanId   Int
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
+}
+
+model Pertemuan {
+  id             Int          @id @default(autoincrement())
+  jadwalMatkul   JadwalMatkul @relation(fields: [jadwalMatkulId], references: [id])
+  jadwalMatkulId Int
+  judul          String?      @db.VarChar(100)
+  deskripsi      String?
+  pertemuanKe    Int          @db.SmallInt()
+  attachment     String[]     @default([])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
+
+  Tugas Tugas[]
+}
+
+model Tugas {
+  id              Int       @id @default(autoincrement())
+  pertemuan       Pertemuan @relation(fields: [pertemuanId], references: [id])
+  pertemuanId     Int
+  attachment      String[]  @default([])
+  judul           String    @db.VarChar(100)
+  desktripsi      String?
+  tanggalMulai    DateTime
+  tanggalBerhenti DateTime
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
+
+  hasilTugas HasilTugas[]
+}
+
+model HasilTugas {
+  id                 Int       @id @default(autoincrement())
+  mahasiswa          User      @relation(fields: [mahasiswaId], references: [id])
+  mahasiswaId        Int
+  tugas              Tugas     @relation(fields: [tugasId], references: [id])
+  tugasId            Int
+  attachment         String[]  @default([])
+  nilai              Float?
+  feedback           String?
+  tanggalPengumpulan DateTime
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  deletedAt          DateTime?
+}
+
+enum ROLE {
+  ADMIN
+  DOSEN
+  MAHASISWA
+}
+
+enum SESIKULIAH {
+  PAGI
+  MALAM
+  SHIFT
+}
+
+enum SESIMATKUL {
+  PAGI
+  MALAM
+}
+
+enum STATUS {
+  AKTIF
+  CUTI
+  KELUAR
+  DIKELUARKAN
+}

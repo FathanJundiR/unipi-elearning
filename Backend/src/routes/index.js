@@ -12,8 +12,8 @@ router.post(
   validateRequestBody(userLoginSchema),
   UserController.login
 );
-router.use("/api/users", UserRouter);
 router.use(authentication);
+router.use("/api/users", UserRouter);
 
 router.use(errorHandler);
 

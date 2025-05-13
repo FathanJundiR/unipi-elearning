@@ -2,25 +2,21 @@ const {
   fetchAllUser,
   findUserById,
   findUniqueBy,
+  createSingleUser,
+  createManyUser,
 } = require("./user.repository");
-const { compare } = require("../../helpers/bcrypt");
+const { hash, compare } = require("../../helpers/bcrypt");
 const { signToken } = require("../../helpers/jwt");
 const HttpException = require("../../exceptions/HttpException");
-const API_MESSAGE = require("../../constant");
+const { API_ERROR_MESSAGE } = require("../../constant");
 
 const loginUser = async (nikNpm, password) => {
   const user = await findUniqueBy({ nikNpm });
   if (!user) {
-    throw new HttpException(
-      401,
-      API_MESSAGE.loginError
-    );
+    throw new HttpException(401, API_ERROR_MESSAGE.loginError);
   }
   if (!compare(password, user.password)) {
-    throw new HttpException(
-      401,
-      API_MESSAGE.loginError
-    );
+    throw new HttpException(401, API_ERROR_MESSAGE.loginError);
   }
   const payload = {
     id: user.id,
@@ -51,7 +47,18 @@ const getUserById = async (userId) => {
 
 // }
 
+const insertSingle = async (userData) => {
+  userData.password = hash(userData.password);
+  //hapus
+  console.log(userData, "===== user.service | userData ====");
+  const user = await createSingleUser(userData);
+  //hapus
+  console.log(user, "==== user.repository | return value ====");
+  return user;
+};
+
 module.exports = {
   loginUser,
   getAllUser,
+  insertSingle,
 };

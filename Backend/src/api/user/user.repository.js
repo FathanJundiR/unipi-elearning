@@ -1,5 +1,4 @@
 const prisma = require("../../db");
-const { hash } = require("../../helpers/bcrypt");
 
 const fetchAllUser = async () => {
   const users = await prisma.user.findMany();
@@ -28,9 +27,21 @@ const findManyBy = async () => {
   // const users = await prisma
 };
 
+const createSingleUser = async (userData) => {
+  const user = await prisma.user.create({
+    data: userData,
+  });
+  console.log(user, "==== user.repository | return value ====");
+  return user;
+};
+
+const createManyUser = async (usersData) => {};
+
 module.exports = {
   fetchAllUser,
   findUserById,
   findUniqueBy,
   findManyBy,
+  createSingleUser,
+  createManyUser,
 };

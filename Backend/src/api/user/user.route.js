@@ -5,8 +5,14 @@ const {
   validateRequestBody,
 } = require("../../middlewares/validation.middleware");
 const { userDataSchema } = require("./user.schema");
+const Authorization = require("../../middlewares/authorization.middleware");
 
 router.get("/", UserController.getAll);
-router.post("/", validateRequestBody(userDataSchema), UserController.add);
+
+router.post(
+  "/",
+  [Authorization.adminAuthorization, validateRequestBody(userDataSchema)],
+  UserController.add
+);
 
 module.exports = router;

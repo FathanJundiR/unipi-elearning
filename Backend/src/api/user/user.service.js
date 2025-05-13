@@ -7,6 +7,7 @@ const { API_ERROR_MESSAGE } = require("../../constant");
 class UserService {
   static async login(nikNpm, password) {
     const user = await UserRepository.findUniqueBy({ nikNpm });
+    console.log(user, "==== user.service | return value prisma ====");
     if (!user) {
       throw new HttpException(401, API_ERROR_MESSAGE.loginError);
     }

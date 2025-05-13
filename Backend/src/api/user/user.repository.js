@@ -2,7 +2,11 @@ const prisma = require("../../db");
 
 class UserRepository {
   static async fetchAll() {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+      omit: {
+        password: true,
+      },
+    });
     return users;
   }
 
@@ -23,12 +27,20 @@ class UserRepository {
     // console.log(users, "==== repository ====");
     return users;
   }
-  static async findManyBy() {
-    // const users = await prisma
+  static async findManyBy(filter) {
+    const users = await prisma.user.findMany({
+      omit: {
+        password: true,
+      },
+      where: filter,
+    });
   }
 
   static async createSingle(userData) {
     const user = await prisma.user.create({
+      omit: {
+        password: true,
+      },
       data: userData,
     });
     console.log(user, "==== user.repository | return value ====");
@@ -39,6 +51,9 @@ class UserRepository {
 
   static async updateSingle(userCredential, userData) {
     const user = await prisma.user.update({
+      omit: {
+        password: true,
+      },
       where: {
         nikNpm: userData.nikNpm,
       },

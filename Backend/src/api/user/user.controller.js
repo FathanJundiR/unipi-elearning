@@ -40,6 +40,21 @@ class UserController {
     }
   }
 
+  //update user's own data
+  static async updateOwn(req, res, next) {
+    try {
+      const userCredential = req.loginInfo;
+      const userData = req.body;
+      const user = await UserService.updateSingle(userCredential, userData);
+      res.status(200).json({
+        message: API_SUCCESS_MESSAGE.updatedUser,
+        data: { user },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async update(req, res, next) {
     try {
       const userCredential = req.loginInfo;

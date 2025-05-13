@@ -1,9 +1,3 @@
 const { PrismaClient } = require("../../generated/prisma/client");
-const prisma = new PrismaClient({
-  omit: {
-    user: {
-      password: true,
-    },
-  },
-});
+const prisma = new PrismaClient();
 module.exports = prisma;

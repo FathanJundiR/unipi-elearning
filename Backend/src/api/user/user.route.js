@@ -14,6 +14,10 @@ router.post(
   [Authorization.adminAuthorization, validateRequestBody(userDataSchema)],
   UserController.add
 );
-router.put("/", z);
+router.put(
+  "/",
+  [Authorization.userUpdateOwn, validateRequestBody(userDataSchema)],
+  UserController.updateOwn
+);
 
 module.exports = router;

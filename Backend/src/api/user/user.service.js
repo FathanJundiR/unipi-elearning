@@ -17,10 +17,12 @@ class UserService {
     const payload = {
       id: user.id,
       nikNpm: user.nikNpm,
+      nama: user.nama,
       role: user.role,
     };
     const access_token = signToken(payload);
-    return access_token;
+    const data = { access_token, userData: payload };
+    return data;
   }
 
   static async getAll() {

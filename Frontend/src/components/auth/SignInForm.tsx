@@ -5,6 +5,15 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
+import * as Yup from "yup";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+
+const signinSchema = Yup.object().shape({
+  nik_npm: Yup.string().required("NIK / NPM couldn't be empty!"),
+  password: Yup.string()
+    .min(6, "Minimum 6 characters!")
+    .required("Password couldn't be empty!"),
+});
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -133,7 +142,6 @@ export default function SignInForm() {
                 </div>
               </div>
             </form>
-
             <div className="mt-5">
               <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
                 Don&apos;t have an account? {""}

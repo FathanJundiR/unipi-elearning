@@ -8,7 +8,7 @@ const errorHandler = require("../middlewares/errorHandler.middleware");
 const { userLoginSchema } = require("../api/user/user.schema");
 
 router.post(
-  "/login",
+  "/api/login",
   validateRequestBody(userLoginSchema),
   UserController.login
 );

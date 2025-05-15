@@ -5,10 +5,11 @@ class UserController {
   static async login(req, res, next) {
     try {
       const { nikNpm, password } = req.body;
-      const access_token = await UserService.login(nikNpm, password);
+      const data = await UserService.login(nikNpm, password);
       res.status(200).json({
+        success: true,
         message: API_SUCCESS_MESSAGE.loginSuccess,
-        data: { access_token },
+        data,
       });
     } catch (error) {
       next(error);
@@ -19,6 +20,7 @@ class UserController {
     try {
       const users = await UserService.getAll();
       res.status(200).json({
+        success: true,
         message: "success get all users",
         data: users,
       });
@@ -32,6 +34,7 @@ class UserController {
       const userData = req.body;
       const user = await UserService.insertSingle(userData);
       res.status(200).json({
+        success: true,
         message: API_SUCCESS_MESSAGE.createdUser,
         data: { user },
       });
@@ -47,6 +50,7 @@ class UserController {
       const userData = req.body;
       const user = await UserService.updateSingle(userCredential, userData);
       res.status(200).json({
+        success: true,
         message: API_SUCCESS_MESSAGE.updatedUser,
         data: { user },
       });
@@ -55,12 +59,14 @@ class UserController {
     }
   }
 
+  //update another user data
   static async update(req, res, next) {
     try {
       const userCredential = req.loginInfo;
       const userData = req.body;
       const user = await UserService.updateSingle(userCredential, userData);
       res.status(200).json({
+        success: true,
         message: API_SUCCESS_MESSAGE.updatedUser,
         data: { user },
       });

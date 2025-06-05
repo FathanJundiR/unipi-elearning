@@ -39,12 +39,6 @@ export default function SignIn() {
     },
   });
 
-  useEffect(() => {
-    if (localStorage.getItem("userdata")) {
-      navigate("/dashboard");
-    }
-  }, []);
-
   const submit = async (data: any) => {
     setLoading(true);
     let res = await ApiServices.login(data, setLoading);
@@ -55,7 +49,7 @@ export default function SignIn() {
         let access_token = res.data.access_token;
         localStorage.setItem("userData", JSON.stringify(userData));
         localStorage.setItem("access_token", access_token);
-        navigate("/dashboard");
+        navigate("/");
       } else {
         GenService.alertError(res.message);
       }

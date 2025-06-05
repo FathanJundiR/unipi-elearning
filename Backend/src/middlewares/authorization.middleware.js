@@ -12,7 +12,7 @@ class Authorization {
     }
   }
 
-  static adminDosenAuthorization(res, req, next) {
+  static dosenAdminAuthorization(res, req, next) {
     const { role } = req.loginInfo;
     if (role === "ADMIN" || role === "DOSEN") {
       next();

@@ -162,7 +162,7 @@ A major update with comprehensive redesign and modern React patterns implementat
 #### Enhancements
 
 1. Remove Repetition of DefaultLayout in every Pages
-2. Add ClickOutside Component for reduce repeated functionality in Header Message, Notification and User Dropdowns.
+2. Add ClickOutside Component for reduce repeated functionality in Message, Notification and User Dropdowns.
 
 ### Version 1.3.6 - [Jan 31, 2024]
 

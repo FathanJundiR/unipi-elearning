@@ -10,9 +10,10 @@ const router = createBrowserRouter([
     path: "/signin",
     element: <SignIn></SignIn>,
     loader: () => {
-      if (localStorage.acces_token) {
+      if (localStorage.access_token) {
         //hapus
         console.log("You're already Sign In");
+        GenService.alertInfo("You're already Sign In");
         return redirect("/");
       }
       return null;

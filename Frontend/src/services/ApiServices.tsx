@@ -17,6 +17,12 @@ async function login(userData: any, setLoading: any) {
   }
 }
 
+async function logout() {
+  localStorage.clear();
+  GenService.alertSuccess("Sign Out Success");
+}
+
 export const ApiServices = {
   login,
+  logout,
 };

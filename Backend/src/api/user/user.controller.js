@@ -21,7 +21,7 @@ class UserController {
       const users = await UserService.getAll();
       res.status(200).json({
         success: true,
-        message: "success get all users",
+        message: API_SUCCESS_MESSAGE.fetchedUser,
         data: users,
       });
     } catch (error) {

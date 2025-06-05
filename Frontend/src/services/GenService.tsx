@@ -1,20 +1,28 @@
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 class GenService {
-  static alertSuccess(message:string) {
+  static alertSuccess(message: string) {
     Swal.fire({
-      icon: 'success',
-      title: 'Success',
-      text: message
-    })
+      icon: "success",
+      title: "Success",
+      text: message,
+    });
   }
 
-  static alertError(message:string) {
+  static alertError(message: string) {
     Swal.fire({
-      icon: 'error',
-      title: 'Oops',
-      text: message
-    })
+      icon: "error",
+      title: "Oops",
+      text: message,
+    });
+  }
+
+  static alertInfo(message: string) {
+    Swal.fire({
+      icon: "info",
+      title: "Oops",
+      text: message,
+    });
   }
 }
 

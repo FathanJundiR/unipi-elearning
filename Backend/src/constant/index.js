@@ -15,9 +15,15 @@ const API_SUCCESS_MESSAGE = {
   fetchedKelas: "Kelas fetched successfully",
   createdKelas: "Kelas created successfully",
   updatedKelas: "Kelas updated successfully",
+  deletedKelas: "Kelas deleted successfully",
+  fetchedMatkul: "Mata Kuliah fetched successfully",
+  createdMatkul: "Mata Kuliah created successfully",
+  updatedMatkul: "Mata Kuliah updated successfully",
+  deletedMatkul: "Mata Kuliah deleted successfully",
   fetchedTahunAjaran: "Tahun Ajaran fetched successfully",
   createdTahunAjaran: "Tahun Ajaran created successfully",
   updatedTahunAjaran: "Tahun Ajaran updated successfully",
+  deletedTahunAjaran: "Tahun Ajaran deleted successfully",
 };
 
 module.exports = { API_ERROR_MESSAGE, API_SUCCESS_MESSAGE };

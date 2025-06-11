@@ -43,7 +43,7 @@ class KelasRepository {
   static async updateSingle(kelasData) {
     const kelas = await prisma.kelas.update({
       where: {
-        kelasId: kelasData.kelasId,
+        id: kelasData.id,
       },
       data: kelasData,
     });

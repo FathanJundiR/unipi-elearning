@@ -28,10 +28,10 @@ class TahunAjaranRepository {
 
   static async createMany(tahunAjaransData) {}
 
-  static async updateSingle(tahunAjaranData) {
+  static async updateSingle(id, tahunAjaranData) {
     const tahunAjaran = await prisma.tahunAjaran.update({
       where: {
-        tahunAjaranId: tahunAjaranData.tahunAjaranId,
+        id,
       },
       data: tahunAjaranData,
     });

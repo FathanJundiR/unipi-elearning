@@ -23,11 +23,20 @@ const errorHandler = (error, req, res, next) => {
     }
   }
 
+  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    if (error.code === "P2025") {
+      status = 400;
+      message = error.meta.cause;
+    }
+  }
+
   //hapus
   console.log(error, " ==== errorHandler ====");
 
   res.status(status).json({
+    success: false,
     message,
+    data: {},
   });
 };
 

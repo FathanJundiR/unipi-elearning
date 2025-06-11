@@ -28,6 +28,7 @@ class TahunAjaranService {
     }
     return tahunAjaran;
   }
+
   static async insertSingle(tahunAjaranData) {
     const tahunAjaran = await TahunAjaranRepository.createSingle(
       tahunAjaranData
@@ -35,19 +36,32 @@ class TahunAjaranService {
     //hapus
     console.log(
       tahunAjaran,
-      "==== tahunAjaran.repository.insertSingle | return value ===="
+      "==== tahunAjaran.service.insertSingle | return value ===="
     );
     return tahunAjaran;
   }
 
-  static async updateSingle(tahunAjaranData) {
+  static async updateSingle(id, tahunAjaranData) {
     const tahunAjaran = await TahunAjaranRepository.updateSingle(
+      id,
       tahunAjaranData
     );
     //hapus
     console.log(
       tahunAjaran,
-      "==== tahunAjaran.repository.updateSingle | return value ===="
+      "==== tahunAjaran.service.updateSingle | return value ===="
+    );
+    return tahunAjaran;
+  }
+
+  static async delete(id) {
+    const tahunAjaran = await TahunAjaranRepository.updateSingle(id, {
+      deletedAt: Date.now(),
+    });
+    //hapus
+    console.log(
+      tahunAjaran,
+      "==== tahunAjaran.service.updateSingle | return value ===="
     );
     return tahunAjaran;
   }

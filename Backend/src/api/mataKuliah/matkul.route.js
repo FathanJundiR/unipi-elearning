@@ -1,22 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const TahunAjaranController = require("./tahunAjaran.controller");
+const MatkulController = require("./matkul.controller");
 const {
   validateRequestBody,
 } = require("../../middlewares/validation.middleware");
 // const { kelasDataSchema} = require("./kelas.schema")
 const Authorization = require("../../middlewares/authorization.middleware");
 
-router.get("/", TahunAjaranController.getAll);
-router.post(
-  "/",
-  [Authorization.dosenAdminAuthorization],
-  TahunAjaranController.add
-);
-router.put(
-  "/:id",
-  [Authorization.dosenAdminAuthorization],
-  TahunAjaranController.update
-);
+router.get("/", MatkulController.getAll);
+router.post("/", [Authorization.dosenAdminAuthorization], MatkulController.add);
 
 module.exports = router;

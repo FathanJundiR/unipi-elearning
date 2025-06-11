@@ -12,7 +12,7 @@ class Authorization {
     }
   }
 
-  static dosenAdminAuthorization(res, req, next) {
+  static dosenAdminAuthorization(req, res, next) {
     const { role } = req.loginInfo;
     if (role === "ADMIN" || role === "DOSEN") {
       next();
@@ -21,7 +21,7 @@ class Authorization {
     }
   }
 
-  static async userUpdateOwn(res, req, next) {
+  static async userUpdateOwn(req, res, next) {
     const { nikNpm } = req.loginInfo;
     const user = await UserService.getById(nikNpm);
     if (nikNpm === user.nikNpm) {

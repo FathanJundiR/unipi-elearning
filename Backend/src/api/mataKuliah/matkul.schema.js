@@ -1,8 +1,8 @@
 const { z } = require("zod");
 
-const tahunAjaranDataSchema = z.object({
+const matkulDataSchema = z.object({
   judul: z.string().min(2).max(100),
   deskripsi: z.string().min(2).max(5),
 });
 
-module.exports = { tahunAjaranDataSchema };
+module.exports = { matkulDataSchema };

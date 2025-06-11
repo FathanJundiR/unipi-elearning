@@ -18,13 +18,11 @@ class TahunAjaranController {
   static async add(req, res, next) {
     try {
       const tahunAjaranData = req.body;
-      const tahunAjaran = await TahunAjaranService.insertSingle(
-        tahunAjaranData
-      );
+      const result = await TahunAjaranService.insertSingle(tahunAjaranData);
       res.status(200).json({
         success: true,
         message: API_SUCCESS_MESSAGE.createdTahunAjaran,
-        data: { tahunAjaran },
+        data: { result },
       });
     } catch (error) {
       next(error);
@@ -33,14 +31,29 @@ class TahunAjaranController {
 
   static async update(req, res, next) {
     try {
+      let { id } = req.params;
+      id = parseInt(id, 10);
       const tahunAjaranData = req.body;
-      const tahunAjaran = await TahunAjaranService.updateSingle(
-        tahunAjaranData
-      );
+      const result = await TahunAjaranService.updateSingle(id, tahunAjaranData);
       res.status(200).json({
         success: true,
         message: API_SUCCESS_MESSAGE.updatedTahunAjaran,
-        data: { tahunAjaran },
+        data: { result },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async delete(req, res, next) {
+    try {
+      let { id } = req.params;
+      id = parseInt(id, 10);
+      const result = await TahunAjaranService.updateSingle(id, tahunAjaranData);
+      res.status(200).json({
+        success: true,
+        message: API_SUCCESS_MESSAGE.updatedTahunAjaran,
+        data: { result },
       });
     } catch (error) {
       next(error);

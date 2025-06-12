@@ -24,6 +24,10 @@ const API_SUCCESS_MESSAGE = {
   createdTahunAjaran: "Tahun Ajaran created successfully",
   updatedTahunAjaran: "Tahun Ajaran updated successfully",
   deletedTahunAjaran: "Tahun Ajaran deleted successfully",
+  fetchedPengumuman: "Pengumuman fetched successfully",
+  createdPengumuman: "Pengumuman created successfully",
+  updatedPengumuman: "Pengumuman updated successfully",
+  deletedPengumuman: "Pengumuman deleted successfully",
 };
 
 module.exports = { API_ERROR_MESSAGE, API_SUCCESS_MESSAGE };

@@ -54,7 +54,7 @@ class MatkulService {
     //hapus
     console.log(
       deletedMatkul,
-      "==== tahunAjaran.service.delete | return value ===="
+      "==== matkul.service.delete | return value ===="
     );
     return deletedMatkul;
   }

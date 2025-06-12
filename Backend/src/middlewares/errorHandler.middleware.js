@@ -5,7 +5,7 @@ const { API_ERROR_MESSAGE } = require("../constant");
 const errorHandler = (error, req, res, next) => {
   let status = error.status ? error.status : 500;
   let message = status !== 500 ? error.message : "Internal Server Error";
-
+  let data = {};
   if (error instanceof z.ZodError) {
     //hapus
     console.log("=== error zod ====");
@@ -30,13 +30,22 @@ const errorHandler = (error, req, res, next) => {
     }
   }
 
+  if (error instanceof z.ZodError) {
+    if (error.errors[0].message === "Required") {
+      message = `${error.errors[0].path[0]} is required`;
+    } else {
+      message = error.errors[0].message;
+    }
+    status = 400;
+    data = error.errors;
+  }
   //hapus
   console.log(error, " ==== errorHandler ====");
 
   res.status(status).json({
     success: false,
     message,
-    data: {},
+    data,
   });
 };
 

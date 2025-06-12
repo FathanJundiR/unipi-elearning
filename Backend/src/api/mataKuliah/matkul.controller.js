@@ -31,12 +31,30 @@ class MatkulController {
 
   static async update(req, res, next) {
     try {
+      let { id } = req.params;
+      id = parseInt(id, 10);
       const matkulData = req.body;
-      const matkul = await MatkulService.updateSingle(matkulData);
+      const matkul = await MatkulService.updateSingle(id, matkulData);
       res.status(200).json({
         success: true,
         message: API_SUCCESS_MESSAGE.updatedMatkul,
         data: { matkul },
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async delete(req, res, next) {
+    try {
+      let { id } = req.params;
+      id = parseInt(id, 10);
+      const matkulData = req.body;
+      const result = await MatkulService.deleteSingle(id, matkulData);
+      res.status(200).json({
+        success: true,
+        message: API_SUCCESS_MESSAGE.deletedMatkul,
+        data: { result },
       });
     } catch (error) {
       next(error);

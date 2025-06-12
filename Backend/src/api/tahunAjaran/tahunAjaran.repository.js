@@ -29,7 +29,7 @@ class TahunAjaranRepository {
   static async createMany(tahunAjaransData) {}
 
   static async updateSingle(id, tahunAjaranData) {
-    const tahunAjaran = await prisma.tahunAjaran.update({
+    const deletedTahunAjaran = await prisma.tahunAjaran.update({
       where: {
         id,
       },
@@ -40,6 +40,19 @@ class TahunAjaranRepository {
       "==== tahunAjaran.repository.updateSingle | return value ===="
     );
     return tahunAjaran;
+  }
+
+  static async deleteSingle(id) {
+    const deletedTahunAjaran = await prisma.tahunAjaran.delete({
+      where: {
+        id,
+      },
+    });
+    console.log(
+      deletedTahunAjaran,
+      "==== tahunAjaran.repository.deleteSingle | return value ===="
+    );
+    return deletedTahunAjaran;
   }
 }
 

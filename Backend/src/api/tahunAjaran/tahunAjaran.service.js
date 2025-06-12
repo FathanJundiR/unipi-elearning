@@ -54,16 +54,14 @@ class TahunAjaranService {
     return tahunAjaran;
   }
 
-  static async delete(id) {
-    const tahunAjaran = await TahunAjaranRepository.updateSingle(id, {
-      deletedAt: Date.now(),
-    });
+  static async deleteSingle(id) {
+    const deletedTahunAjaran = await TahunAjaranRepository.deleteSingle(id);
     //hapus
     console.log(
-      tahunAjaran,
-      "==== tahunAjaran.service.updateSingle | return value ===="
+      deletedTahunAjaran,
+      "==== tahunAjaran.service.delete | return value ===="
     );
-    return tahunAjaran;
+    return deletedTahunAjaran;
   }
 }
 

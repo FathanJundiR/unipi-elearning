@@ -39,14 +39,24 @@ class MatkulService {
     return matkul;
   }
 
-  static async updateSingle(matkulData) {
-    const matkul = await MatkulRepository.updateSingle(matkulData);
+  static async updateSingle(id, matkulData) {
+    const matkul = await MatkulRepository.updateSingle(id, matkulData);
     //hapus
     console.log(
       matkul,
       "==== matkul.repository.updateSingle | return value ===="
     );
     return matkul;
+  }
+
+  static async deleteSingle(id) {
+    const deletedMatkul = await MatkulRepository.deleteSingle(id);
+    //hapus
+    console.log(
+      deletedMatkul,
+      "==== tahunAjaran.service.delete | return value ===="
+    );
+    return deletedMatkul;
   }
 }
 

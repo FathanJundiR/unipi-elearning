@@ -1,8 +1,9 @@
 const { z } = require("zod");
 
 const tahunAjaranDataSchema = z.object({
-  judul: z.string().min(2).max(100),
-  deskripsi: z.string().min(2).max(5),
+  tahunAjaran: z
+    .string()
+    .regex(/^\d{4}\/\d{4}$/, "Tahun Ajaran must be in YYYY/YYYY format"),
 });
 
 module.exports = { tahunAjaranDataSchema };

@@ -40,18 +40,33 @@ class MatkulRepository {
 
   static async createMany(matkulsData) {}
 
-  static async updateSingle(matkulData) {
+  static async updateSingle(id, matkulData) {
     const matkul = await prisma.mataKuliah.update({
       where: {
-        id: matkulData.id,
+        id,
       },
       data: matkulData,
     });
+    //hapus
     console.log(
       matkul,
       "==== matkul.repository.updateSingle | return value ===="
     );
     return matkul;
+  }
+
+  static async deleteSingle(id) {
+    const deletedMatkul = await prisma.mataKuliah.delete({
+      where: {
+        id,
+      },
+    });
+    //hapus
+    console.log(
+      deletedMatkul,
+      "==== matkul.repository.deleteSingle | return value ===="
+    );
+    return deletedMatkul;
   }
 }
 

@@ -14,14 +14,7 @@ const validate = (schema, source) => {
     } catch (error) {
       //hapus
       console.log(error, "==== validation.middleware|catch ====");
-      if (error instanceof z.ZodError) {
-        res.status(400).json({
-          message: `Invalid ${source} schema`,
-          errors: error.errors,
-        });
-      } else {
-        next(error);
-      }
+      next(error);
     }
   };
 };

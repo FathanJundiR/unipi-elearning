@@ -18,8 +18,8 @@ class MatkulController {
   static async add(req, res, next) {
     try {
       const matkulData = req.body;
-      const matkul = await MatkulService.insertSingle(matkulData);
-      res.status(200).json({
+      const matkule = await MatkulService.insertSingle(matkulData);
+      res.status(201).json({
         success: true,
         message: API_SUCCESS_MESSAGE.createdMatkul,
         data: { matkul },

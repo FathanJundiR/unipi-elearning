@@ -28,6 +28,10 @@ const API_SUCCESS_MESSAGE = {
   createdPengumuman: "Pengumuman created successfully",
   updatedPengumuman: "Pengumuman updated successfully",
   deletedPengumuman: "Pengumuman deleted successfully",
+  fetched: (title) => `${title} fetched successfully`,
+  created: (title) => `${title} created successfully`,
+  updated: (title) => `${title} updated successfully`,
+  deleted: (title) => `${title} deleted successfully`,
 };
 
 module.exports = { API_ERROR_MESSAGE, API_SUCCESS_MESSAGE };

@@ -19,7 +19,7 @@ class TahunAjaranController {
     try {
       const tahunAjaranData = req.body;
       const result = await TahunAjaranService.insertSingle(tahunAjaranData);
-      res.status(200).json({
+      res.status(201).json({
         success: true,
         message: API_SUCCESS_MESSAGE.createdTahunAjaran,
         data: { result },

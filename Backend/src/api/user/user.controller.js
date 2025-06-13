@@ -33,7 +33,7 @@ class UserController {
     try {
       const userData = req.body;
       const user = await UserService.insertSingle(userData);
-      res.status(200).json({
+      res.status(201).json({
         success: true,
         message: API_SUCCESS_MESSAGE.createdUser,
         data: { user },

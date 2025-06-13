@@ -19,7 +19,7 @@ class PengumumanController {
     try {
       const pengumumanData = req.body;
       const pengumuman = await PengumumanService.insertSingle(pengumumanData);
-      res.status(200).json({
+      res.status(201).json({
         success: true,
         message: API_SUCCESS_MESSAGE.createdPengumuman,
         data: { pengumuman },

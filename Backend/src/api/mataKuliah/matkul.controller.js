@@ -1,5 +1,6 @@
 const MatkulService = require("./matkul.service");
 const { API_SUCCESS_MESSAGE } = require("../../constant");
+const title = "Mata Kuliah";
 
 class MatkulController {
   static async getAll(req, res, next) {
@@ -7,7 +8,7 @@ class MatkulController {
       const matkul = await MatkulService.getAll();
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.fetchedMatkul,
+        message: API_SUCCESS_MESSAGE.fetched(title),
         data: matkul,
       });
     } catch (error) {
@@ -18,10 +19,10 @@ class MatkulController {
   static async add(req, res, next) {
     try {
       const matkulData = req.body;
-      const matkule = await MatkulService.insertSingle(matkulData);
+      const matkul = await MatkulService.insertSingle(matkulData);
       res.status(201).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.createdMatkul,
+        message: API_SUCCESS_MESSAGE.created(title),
         data: { matkul },
       });
     } catch (error) {
@@ -37,7 +38,7 @@ class MatkulController {
       const matkul = await MatkulService.updateSingle(id, matkulData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.updatedMatkul,
+        message: API_SUCCESS_MESSAGE.updated(title),
         data: { matkul },
       });
     } catch (error) {
@@ -53,7 +54,7 @@ class MatkulController {
       const result = await MatkulService.deleteSingle(id, matkulData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.deletedMatkul,
+        message: API_SUCCESS_MESSAGE.deleted(title),
         data: { result },
       });
     } catch (error) {

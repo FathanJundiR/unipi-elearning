@@ -1,5 +1,6 @@
 const KelasService = require("./kelas.service");
 const { API_SUCCESS_MESSAGE } = require("../../constant");
+const title = "Kelas";
 
 class KelasController {
   static async getAll(req, res, next) {
@@ -7,7 +8,7 @@ class KelasController {
       const kelas = await KelasService.getAll();
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.fetchedKelas,
+        message: API_SUCCESS_MESSAGE.fetched(title),
         data: kelas,
       });
     } catch (error) {
@@ -21,7 +22,7 @@ class KelasController {
       const kelas = await KelasService.insertSingle(kelasData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.createdKelas,
+        message: API_SUCCESS_MESSAGE.created(title),
         data: { kelas },
       });
     } catch (error) {
@@ -35,7 +36,7 @@ class KelasController {
       const kelas = await KelasService.updateSingle(kelasData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.updatedKelas,
+        message: API_SUCCESS_MESSAGE.updated(title),
         data: { kelas },
       });
     } catch (error) {

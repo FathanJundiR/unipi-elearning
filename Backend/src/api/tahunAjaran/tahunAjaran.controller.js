@@ -1,5 +1,6 @@
 const TahunAjaranService = require("./tahunAjaran.service");
 const { API_SUCCESS_MESSAGE } = require("../../constant");
+const title = "Tahun Ajaran";
 
 class TahunAjaranController {
   static async getAll(req, res, next) {
@@ -7,7 +8,7 @@ class TahunAjaranController {
       const tahunAjaran = await TahunAjaranService.getAll();
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.fetchedTahunAjaran,
+        message: API_SUCCESS_MESSAGE.fetched(title),
         data: tahunAjaran,
       });
     } catch (error) {
@@ -21,7 +22,7 @@ class TahunAjaranController {
       const result = await TahunAjaranService.insertSingle(tahunAjaranData);
       res.status(201).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.createdTahunAjaran,
+        message: API_SUCCESS_MESSAGE.created(title),
         data: { result },
       });
     } catch (error) {
@@ -37,7 +38,7 @@ class TahunAjaranController {
       const result = await TahunAjaranService.updateSingle(id, tahunAjaranData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.updatedTahunAjaran,
+        message: API_SUCCESS_MESSAGE.updated(title),
         data: { result },
       });
     } catch (error) {
@@ -53,7 +54,7 @@ class TahunAjaranController {
       const result = await TahunAjaranService.deleteSingle(id, tahunAjaranData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.deletedTahunAjaran,
+        message: API_SUCCESS_MESSAGE.deleted(title),
         data: { result },
       });
     } catch (error) {

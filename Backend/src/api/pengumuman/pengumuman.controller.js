@@ -1,5 +1,6 @@
 const PengumumanService = require("./pengumuman.service");
 const { API_SUCCESS_MESSAGE } = require("../../constant");
+const title = "Pengumuman";
 
 class PengumumanController {
   static async getAll(req, res, next) {
@@ -7,7 +8,7 @@ class PengumumanController {
       const pengumuman = await PengumumanService.getAll();
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.fetchedPengumuman,
+        message: API_SUCCESS_MESSAGE.fetched(title),
         data: pengumuman,
       });
     } catch (error) {
@@ -21,7 +22,7 @@ class PengumumanController {
       const pengumuman = await PengumumanService.insertSingle(pengumumanData);
       res.status(201).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.createdPengumuman,
+        message: API_SUCCESS_MESSAGE.created(title),
         data: { pengumuman },
       });
     } catch (error) {
@@ -40,7 +41,7 @@ class PengumumanController {
       );
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.updatedPengumuman,
+        message: API_SUCCESS_MESSAGE.updated(title),
         data: { pengumuman },
       });
     } catch (error) {
@@ -56,7 +57,7 @@ class PengumumanController {
       const result = await PengumumanService.deleteSingle(id, pengumumanData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.deletedPengumuman,
+        message: API_SUCCESS_MESSAGE.deleted(title),
         data: { result },
       });
     } catch (error) {

@@ -1,5 +1,6 @@
 const UserService = require("./user.service");
 const { API_SUCCESS_MESSAGE } = require("../../constant");
+const title = "User";
 
 class UserController {
   static async login(req, res, next) {
@@ -21,7 +22,7 @@ class UserController {
       const users = await UserService.getAll();
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.fetchedUser,
+        message: API_SUCCESS_MESSAGE.fetched(title),
         data: users,
       });
     } catch (error) {
@@ -35,7 +36,7 @@ class UserController {
       const user = await UserService.insertSingle(userData);
       res.status(201).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.createdUser,
+        message: API_SUCCESS_MESSAGE.created(title),
         data: { user },
       });
     } catch (error) {
@@ -51,7 +52,7 @@ class UserController {
       const user = await UserService.updateSingle(userCredential, userData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.updatedUser,
+        message: API_SUCCESS_MESSAGE.updated(title),
         data: { user },
       });
     } catch (error) {
@@ -67,7 +68,7 @@ class UserController {
       const user = await UserService.updateSingle(userCredential, userData);
       res.status(200).json({
         success: true,
-        message: API_SUCCESS_MESSAGE.updatedUser,
+        message: API_SUCCESS_MESSAGE.updated(title),
         data: { user },
       });
     } catch (error) {

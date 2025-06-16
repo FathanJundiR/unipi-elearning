@@ -2,7 +2,13 @@ const prisma = require("../../db");
 
 class JadwalMatkulRepository {
   static async fetchAll() {
-    const jadwalMatkul = await prisma.jadwalMatkul.findMany();
+    const jadwalMatkul = await prisma.jadwalMatkul.findMany({
+      include: {
+        matkul: true,
+        kelas: true,
+        dosen: true,
+      },
+    });
     return jadwalMatkul;
   }
 

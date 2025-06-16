@@ -6,6 +6,7 @@ class JadwalMatkulRepository {
       include: {
         matkul: true,
         kelas: true,
+        tahunAjaran: true,
         dosen: true,
       },
     });

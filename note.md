@@ -1,0 +1,5 @@
+- \[jadwalMahasiswa\] pas mau delete cek ada hasilTugas atau gak.Klo ada tanya user mau didelete atau gak
+- \[ pertemuan \] dibikin pas si dosen asign materi atau tugas.
+  - defautlnya null, di FE ga nampil, cuman tampilan pertemuan kosong aja
+  - tambahin pertemuan kalau dia nambahin materi atau tugas.
+- \[ tugas \] kalo bikin tugas tapi pertemuan kosong, bikin pertemuannya.

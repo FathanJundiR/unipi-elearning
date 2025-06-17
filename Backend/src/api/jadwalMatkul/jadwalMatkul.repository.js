@@ -18,6 +18,12 @@ class JadwalMatkulRepository {
       where: {
         id: jadwalMatkulId,
       },
+      include: {
+        matkul: true,
+        kelas: true,
+        tahunAjaran: true,
+        dosen: true,
+      },
     });
     return jadwalMatkul;
   }
@@ -25,6 +31,12 @@ class JadwalMatkulRepository {
   static async findUniqueBy(filter) {
     const jadwalMatkul = await prisma.jadwalMatkul.findFirst({
       where: filter,
+      include: {
+        matkul: true,
+        kelas: true,
+        tahunAjaran: true,
+        dosen: true,
+      },
     });
     return jadwalMatkul;
   }

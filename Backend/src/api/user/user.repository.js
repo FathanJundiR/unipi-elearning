@@ -23,6 +23,7 @@ class UserRepository {
     // console.log(filter, "==== repository ====");
     const users = await prisma.user.findUnique({
       where: filter,
+      omit: { password: false },
     });
     // console.log(users, "==== repository ====");
     return users;

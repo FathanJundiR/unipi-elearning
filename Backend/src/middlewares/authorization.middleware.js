@@ -21,6 +21,15 @@ class Authorization {
     }
   }
 
+  static mahasiswaAuthorization(req, res, next) {
+    const { role } = req.loginInfo;
+    if (role === "MAHASISWA") {
+      next();
+    } else {
+      throw new HttpException(401, API_ERROR_MESSAGE.forbidden);
+    }
+  }
+
   static async userUpdateOwn(req, res, next) {
     const { nikNpm } = req.loginInfo;
     const user = await UserService.getById(nikNpm);

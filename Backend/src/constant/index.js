@@ -3,7 +3,8 @@ const API_ERROR_MESSAGE = {
   unauthorized: "Please login first",
   forbidden: "You don't have any access",
   notFound: "Data not found",
-  userAlreadyExist: "User with that NIK / NPM already created!",
+  userAlreadyExist: "User with that NIK / NPM already exist!",
+  jadwalMahasiswaExist: "Jadwal Mahasiswa already exist!",
 };
 
 const API_SUCCESS_MESSAGE = {

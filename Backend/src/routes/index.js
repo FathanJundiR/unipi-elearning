@@ -6,6 +6,7 @@ const TahunAjaranRouter = require("../api/tahunAjaran/tahunAjaran.route");
 const MataKuliahRouter = require("../api/mataKuliah/matkul.route");
 const PengumumanRouter = require("../api/pengumuman/pengumuman.route");
 const JadwalMatkulRouter = require("../api/jadwalMatkul/jadwalMatkul.route");
+const JadwalMahasiswaRouter = require("../api/jadwalMahasiswa/jadwalMahasiswa.route");
 const UserController = require("../api/user/user.controller");
 const authentication = require("../middlewares/authentication.middleware");
 const { validateRequestBody } = require("../middlewares/validation.middleware");
@@ -24,6 +25,7 @@ router.use("/api/tahunajaran", TahunAjaranRouter);
 router.use("/api/matakuliah", MataKuliahRouter);
 router.use("/api/pengumuman", PengumumanRouter);
 router.use("/api/jadwalmatkul", JadwalMatkulRouter);
+router.use("/api/jadwalmahasiswa", JadwalMahasiswaRouter);
 
 router.use(errorHandler);
 
